@@ -1,0 +1,91 @@
+{% import 'bootstrap/wtf.html' as wtf %}
+
+
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>COLOR PALETTE</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer">
+       
+        <script src="https://kit.fontawesome.com/5d8f290e4a.js" crossorigin="anonymous"></script>
+        	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="{{url_for('main.home_page')}}" class="logo"><strong>COLOR PALETTE</strong></a>
+									<ul class="icons">
+										    
+                                                
+										
+                                        
+									</ul>
+								</header>
+                            <!-- End Header -->
+                        <section>
+                            
+                            {% if form %}
+                                <article>
+                                    {{wtf.csrf_token}}
+                                    {{wtf.quick_form(form, novalidate=True)}}
+                                </article>
+                            {% endif %}
+                                
+                            
+                            {% if max_freq and top_colors %}
+                                <h3>
+                                    The Most Frequent Color is:
+                                </h3>
+                                <p style="background-color:rgb{{max_freq}};" >RGB: {{max_freq}}</p>
+                                <h3>
+                                    The Top Five Colors are:
+                                </h3>
+                                
+                                {% for color in top_colors  %}
+                                    <p style="background-color:rgb{{color}};" >RGB: {{color}}</p>
+
+                                {% endfor %}
+                                <p>
+                                    <span><a class="button" href="{{url_for('main.home_page')}}">HOME</a></span>
+                                </p>
+                            {% endif %}
+                                
+                        
+                        </section>
+                                
+                        
+                            
+						</div>
+					</div>
+                <!-- End Main -->
+                
+            
+           
+                
+            </div>
+            <!-- End Wrapper -->
+
+        <!-- Scripts -->
+
+            <script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+            <script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
+            <script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
+            <script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
+            <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.js"  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        
+           
+    </body>
+</html>
